@@ -1233,18 +1233,18 @@
             "description": "Move-specific event",
             "type": "object",
             "required": [
-              "MoveEvent"
+              "moveEvent"
             ],
             "properties": {
-              "MoveEvent": {
+              "moveEvent": {
                 "type": "object",
                 "required": [
                   "bcs",
                   "fields",
                   "function",
+                  "instigator",
                   "module",
                   "packageId",
-                  "sender",
                   "type"
                 ],
                 "properties": {
@@ -1257,14 +1257,14 @@
                   "function": {
                     "type": "string"
                   },
+                  "instigator": {
+                    "$ref": "#/components/schemas/SuiAddress"
+                  },
                   "module": {
                     "type": "string"
                   },
                   "packageId": {
                     "$ref": "#/components/schemas/ObjectID"
-                  },
-                  "sender": {
-                    "$ref": "#/components/schemas/SuiAddress"
                   },
                   "type": {
                     "type": "string"
@@ -1278,21 +1278,21 @@
             "description": "Module published",
             "type": "object",
             "required": [
-              "Publish"
+              "publish"
             ],
             "properties": {
-              "Publish": {
+              "publish": {
                 "type": "object",
                 "required": [
-                  "packageId",
-                  "sender"
+                  "instigator",
+                  "packageId"
                 ],
                 "properties": {
+                  "instigator": {
+                    "$ref": "#/components/schemas/SuiAddress"
+                  },
                   "packageId": {
                     "$ref": "#/components/schemas/ObjectID"
-                  },
-                  "sender": {
-                    "$ref": "#/components/schemas/SuiAddress"
                   }
                 }
               }
@@ -1303,14 +1303,19 @@
             "description": "Transfer objects to new address / wrap in another object / coin",
             "type": "object",
             "required": [
-              "TransferObject"
+              "transferObject"
             ],
             "properties": {
-              "TransferObject": {
+              "transferObject": {
                 "type": "object",
                 "required": [
                   "destinationAddr",
+                  "function",
+                  "instigator",
+                  "module",
                   "objectId",
+                  "packageId",
+                  "recipient",
                   "type",
                   "version"
                 ],
@@ -1318,8 +1323,23 @@
                   "destinationAddr": {
                     "$ref": "#/components/schemas/SuiAddress"
                   },
+                  "function": {
+                    "type": "string"
+                  },
+                  "instigator": {
+                    "$ref": "#/components/schemas/SuiAddress"
+                  },
+                  "module": {
+                    "type": "string"
+                  },
                   "objectId": {
                     "$ref": "#/components/schemas/ObjectID"
+                  },
+                  "packageId": {
+                    "$ref": "#/components/schemas/ObjectID"
+                  },
+                  "recipient": {
+                    "$ref": "#/components/schemas/Owner"
                   },
                   "type": {
                     "$ref": "#/components/schemas/TransferType"
@@ -1336,33 +1356,33 @@
             "description": "Delete object",
             "type": "object",
             "required": [
-              "DeleteObject"
+              "deleteObject"
             ],
             "properties": {
-              "DeleteObject": {
+              "deleteObject": {
                 "type": "object",
                 "required": [
                   "function",
+                  "instigator",
                   "module",
-                  "object_id",
-                  "package_id",
-                  "sender"
+                  "objectId",
+                  "packageId"
                 ],
                 "properties": {
                   "function": {
                     "type": "string"
                   },
+                  "instigator": {
+                    "$ref": "#/components/schemas/SuiAddress"
+                  },
                   "module": {
                     "type": "string"
                   },
-                  "object_id": {
+                  "objectId": {
                     "$ref": "#/components/schemas/ObjectID"
                   },
-                  "package_id": {
+                  "packageId": {
                     "$ref": "#/components/schemas/ObjectID"
-                  },
-                  "sender": {
-                    "$ref": "#/components/schemas/SuiAddress"
                   }
                 }
               }
@@ -1373,37 +1393,37 @@
             "description": "New object creation",
             "type": "object",
             "required": [
-              "NewObject"
+              "newObject"
             ],
             "properties": {
-              "NewObject": {
+              "newObject": {
                 "type": "object",
                 "required": [
                   "function",
+                  "instigator",
                   "module",
-                  "object_id",
-                  "package_id",
-                  "recipient",
-                  "sender"
+                  "objectId",
+                  "packageId",
+                  "recipient"
                 ],
                 "properties": {
                   "function": {
                     "type": "string"
                   },
+                  "instigator": {
+                    "$ref": "#/components/schemas/SuiAddress"
+                  },
                   "module": {
                     "type": "string"
                   },
-                  "object_id": {
+                  "objectId": {
                     "$ref": "#/components/schemas/ObjectID"
                   },
-                  "package_id": {
+                  "packageId": {
                     "$ref": "#/components/schemas/ObjectID"
                   },
                   "recipient": {
                     "$ref": "#/components/schemas/Owner"
-                  },
-                  "sender": {
-                    "$ref": "#/components/schemas/SuiAddress"
                   }
                 }
               }
@@ -1414,10 +1434,10 @@
             "description": "Epoch change",
             "type": "object",
             "required": [
-              "EpochChange"
+              "epochChange"
             ],
             "properties": {
-              "EpochChange": {
+              "epochChange": {
                 "type": "integer",
                 "format": "uint64",
                 "minimum": 0.0
@@ -1429,10 +1449,10 @@
             "description": "New checkpoint",
             "type": "object",
             "required": [
-              "Checkpoint"
+              "checkpoint"
             ],
             "properties": {
-              "Checkpoint": {
+              "checkpoint": {
                 "type": "integer",
                 "format": "uint64",
                 "minimum": 0.0
@@ -1518,10 +1538,10 @@
           {
             "type": "object",
             "required": [
-              "SenderAddress"
+              "InstigatorAddress"
             ],
             "properties": {
-              "SenderAddress": {
+              "InstigatorAddress": {
                 "$ref": "#/components/schemas/SuiAddress"
               }
             },
@@ -1547,6 +1567,18 @@
             "properties": {
               "ObjectId": {
                 "$ref": "#/components/schemas/ObjectID"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": [
+              "TransferType"
+            ],
+            "properties": {
+              "TransferType": {
+                "$ref": "#/components/schemas/TransferType"
               }
             },
             "additionalProperties": false
