@@ -30,7 +30,6 @@ impl EventApiImpl {
 
 impl EventApiServer for EventApiImpl {
     fn subscribe_event(&self, pending: PendingSubscription, filter: SuiEventFilter) {
-        info!(filter = ?filter, "Called");
         let filter = match filter.try_into() {
             Ok(filter) => filter,
             Err(e) => {
