@@ -8,7 +8,7 @@ use futures::{StreamExt, TryStream};
 use jsonrpsee_core::error::SubscriptionClosed;
 use jsonrpsee_core::server::rpc_module::{PendingSubscription, SubscriptionSink};
 use serde::Serialize;
-use tracing::{info, warn};
+use tracing::{warn};
 
 use sui_core::authority::AuthorityState;
 use sui_core::event_handler::EventHandler;

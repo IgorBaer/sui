@@ -60,7 +60,7 @@ fn test_to_json_value() {
     assert_eq!(Some(&json!(20)), json_value.pointer("/coins/1/id/version"));
     assert_eq!(Some(&json!(30)), json_value.pointer("/coins/2/id/version"));
     assert_eq!(
-        Some(&json!(move_event.creator.to_hex_literal())),
+        Some(&json!(format!("{:#x}", move_event.creator))),
         json_value.pointer("/creator")
     );
     assert_eq!(Some(&json!(100)), json_value.pointer("/data/0"));
